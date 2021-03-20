@@ -1,0 +1,124 @@
+
+
+<html>
+    <head>
+        <style>
+            input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button 
+            {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            html { 
+                 background: url(bgimage.jpg) no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                }
+            form{
+                    background-color: rgba(245, 245, 252, 0.3)  ;
+                    width:10cm;
+                    height:10cm;
+                    
+                }
+                
+            
+        </style>
+    </head>
+    <body ><center>
+        <h1 style="background-color: oldlace;">STUDENT REGISTRATION FORM</h1><br><br><br>
+        
+        <form action="#" method="POST">
+            <br>
+            <label>Student Name</label>
+            <input type="text" name="name" placeholder="enter your name" required><br><br>
+
+            
+            <label>Father Name</label>
+            <input type="text" name="fname" placeholder="enter your father's name" required><br><br>
+
+            
+            <label>Mother Name</label>
+            <input type="text" name="mname" placeholder="enter your mother's name" required><br><br>
+
+            
+            <label>Class</label>
+            <input type="number" name="class" placeholder="enter your class" required><br><br>
+
+            
+            <label>School</label>
+            <input type="text" name="school" placeholder="enter your school name" required><br><br>
+
+            
+            <label>Mobile</label>
+            <input type="number" name="mob" placeholder="enter your number" required><br><br>
+
+            
+            <label>Age</label>
+            <input type="number" name="age" placeholder="enter your age" required><br><br>
+
+            
+            <label>Email</label>
+            <input type="text" name="email" placeholder="enter your email" required><br><br>
+
+
+
+            <input type="submit" name="submit">
+
+    
+    </form>
+    </center>
+    </body>
+    </html>
+
+       
+<?php 
+if(isset($_POST['submit']))
+{
+    $server="localhost";
+    $user="root";
+    $password="";
+    $db="student";
+    $con=mysqli_connect($server,$user,$password,$db);
+    if($con)
+    {
+        echo"connection established ";
+    }
+    else
+    {
+        die(mysqli_error($con));
+    }
+
+$sname=$_POST['name'];
+$fname=$_POST['fname'];
+$mname=$_POST['mname'];
+$class=$_POST['class'];
+$school=$_POST['school'];
+$mob=$_POST['mob'];
+$age=$_POST['age'];
+$email=$_POST['email'];
+$sql="insert into student_detail(sname,fname,mname,class,school,mobile,age,email) values('$sname','$fname','$mname','$class','$school','$mob','$age','$email')";
+$result=mysqli_query($con,$sql);
+
+}
+
+
+  
+  
+  ?>
+
+
+<?php
+if(isset($_POST["submit"]))
+{
+    if($result)
+    {
+        
+echo '<script target=#>alert("YOUR RESPONSE HAVE BEEN SUBMITTED")</script>';
+    }
+    else{
+        die(mysqli_error($con));
+    }
+}
+?>
